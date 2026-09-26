@@ -1,3 +1,4 @@
+import { createHash, randomBytes } from "node:crypto";
 import type { Role } from "./types";
 
 export interface SessionUser { id: string; email: string; name?: string; role: Role; }
@@ -9,4 +10,16 @@ export function hasRole(user: SessionUser | null, roles: Role[]) {
 export function requireRole(user: SessionUser | null, roles: Role[]) {
   if (!hasRole(user, roles)) throw new Error("Unauthorized");
   return user;
+}
+
+export function hashPassword(password: string) {
+  return createHash("sha256").update(password).digest("hex");
+}
+
+export function createSessionToken() {
+  return randomBytes(32).toString("hex");
+}
+
+export function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
