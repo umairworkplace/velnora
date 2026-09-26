@@ -1,3 +1,4 @@
+import { db } from "@/lib/db";
 import type { OrderStatus, OrderSummary } from "@/lib/domain/orders";
 
 export function orderTotal(items: Array<{ quantity: number; unitPrice: number }>) {
@@ -17,4 +18,12 @@ export function summarizeOrder(order: OrderSummary) {
 
 function orderStatusText(status: OrderStatus) {
   return status.charAt(0).toUpperCase() + status.slice(1);
+}
+
+export async function getUserOrders(userId: string) {
+  return db.order.findMany({ where: { userId }, include: { items: { include: { product: true } } }, orderBy: { createdAt: "desc" } });
+}
+
+export async function getOrder(orderId: string) {
+  return db.order.findUnique({ where: { id: orderId }, include: { items: { include: { product: true } }, user: true } });
 }
