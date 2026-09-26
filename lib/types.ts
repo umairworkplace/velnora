@@ -4,3 +4,4 @@ export type OrderStatus = "PENDING" | "PAID" | "PROCESSING" | "SHIPPED" | "DELIV
 
 export interface ProductSummary { id: string; name: string; slug: string; price: number; stock: number; status: ProductStatus; }
 export interface CartItem { productId: string; quantity: number; unitPrice: number; }
+export type CartLine = CartItem;
