@@ -1,4 +1,4 @@
-import type { UserRole } from "@prisma/client";
+import type { UserRole } from "@/lib/domain/users";
 
 export type SessionUser = { id: string; email: string; role: UserRole };
 
