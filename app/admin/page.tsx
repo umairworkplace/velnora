@@ -1,0 +1,4 @@
+export default function AdminPage() {
+  const metrics = [["Customers", "1,284"], ["Products", "348"], ["Orders", "2,916"], ["GMV", "$184K"]];
+  return <main style={{ maxWidth: 1100, margin: "0 auto", padding: "64px 24px" }}><p style={{ fontWeight: 700, letterSpacing: ".12em", fontSize: 12 }}>ADMIN CONSOLE</p><h1 style={{ fontSize: 48, letterSpacing: "-0.05em" }}>Commerce operations.</h1><div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(190px,1fr))", gap: 16 }}>{metrics.map(([label, value]) => <section key={label} style={{ padding: 22, background: "white", border: "1px solid #e5e7eb", borderRadius: 16 }}><p style={{ color: "#6b7280", margin: 0 }}>{label}</p><strong style={{ display: "block", fontSize: 28, marginTop: 8 }}>{value}</strong></section>)}</div></main>;
+}
