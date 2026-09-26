@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { money, positiveInt, requiredString } from "../../../../../lib/validation";
+import { money, positiveInt, requiredString } from "../../../../lib/validation";
 
 export async function POST(request: Request) {
   try {
