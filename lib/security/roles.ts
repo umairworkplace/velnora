@@ -1,11 +1,13 @@
 import type { UserRole } from "@/lib/domain/users";
 
-export const protectedAreas = {
+type ProtectedArea = "shop" | "seller" | "admin";
+
+export const protectedAreas: Record<UserRole, readonly ProtectedArea[]> = {
   customer: ["shop"],
   seller: ["shop", "seller"],
   admin: ["shop", "seller", "admin"],
-} as const satisfies Record<UserRole, readonly string[]>;
+};
 
-export function roleCanEnter(role: UserRole, area: keyof typeof protectedAreas) {
+export function roleCanEnter(role: UserRole, area: ProtectedArea) {
   return protectedAreas[role].includes(area);
 }
