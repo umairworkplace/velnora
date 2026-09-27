@@ -1,4 +1,3 @@
-import type { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 
 export async function createOrder(
@@ -7,7 +6,7 @@ export async function createOrder(
 ) {
   if (!items.length) throw new Error("EMPTY_ORDER");
 
-  return db.$transaction(async (tx: Prisma.TransactionClient) => {
+  return db.$transaction(async (tx) => {
     const products = await Promise.all(
       items.map((item) => tx.product.findUnique({ where: { id: item.productId } })),
     );
